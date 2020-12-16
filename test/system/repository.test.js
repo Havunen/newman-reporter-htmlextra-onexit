@@ -35,12 +35,12 @@ describe('project repository', function () {
                 expect(json).to.have.property('author', 'Danny Dainton');
                 expect(json).to.have.property('license', 'Apache-2.0');
                 // eslint-disable-next-line max-len
-                expect(json).to.have.property('bugs', 'https://github.com/DannyDainton/newman-reporter-htmlextra-onexit/issues');
+                expect(json).to.have.property('bugs', 'https://github.com/Havunen/newman-reporter-htmlextra-onexit/issues');
 
                 expect(json).to.have.property('repository');
                 expect(json.repository).to.eql({
                     type: 'git',
-                    url: 'https://github.com/DannyDainton/newman-reporter-htmlextra-onexit.git'
+                    url: 'https://github.com/Havunen/newman-reporter-htmlextra-onexit.git'
                 });
 
                 expect(json).to.have.property('keywords');

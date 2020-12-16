@@ -74,7 +74,7 @@ describe('Newman and htmlextra run from the CLI', function () {
             // eslint-disable-next-line max-len
             let collection = invalidCollectionNameFolder + '/' + file;
 
-            exec(`${newman} run ${collection} -r htmlextra`,
+            exec(`${newman} run ${collection} -r htmlextra-onexit`,
                 function (code) {
                     expect(code, 'should have exit code of 0').to.equal(0);
                     let outputFile = fs.readdirSync('newman'),
@@ -91,7 +91,7 @@ describe('Newman and htmlextra run from the CLI', function () {
 
     it('should correctly generate the html report for a successful run', function (done) {
         // eslint-disable-next-line max-len
-        exec(`${newman} run test/requests/simple-get-request.json -r htmlextra --reporter-htmlextra-export ${outFile}`,
+        exec(`${newman} run test/requests/simple-get-request.json -r htmlextra-onexit --reporter-htmlextra-export ${outFile}`,
             function (code) {
                 expect(code, 'should have exit code of 0').to.equal(0);
                 fs.stat(outFile, done);
@@ -100,7 +100,7 @@ describe('Newman and htmlextra run from the CLI', function () {
 
     it('should correctly generate html report for a formdata POST request', function (done) {
         // eslint-disable-next-line max-len
-        exec(`${newman} run test/requests/simple-post-request-with-formdata.json -r htmlextra --reporter-htmlextra-export ${outFile}`,
+        exec(`${newman} run test/requests/simple-post-request-with-formdata.json -r htmlextra-onexit --reporter-htmlextra-export ${outFile}`,
             function (code) {
                 expect(code, 'should have exit code of 0').to.equal(0);
                 fs.stat(outFile, done);
@@ -109,7 +109,7 @@ describe('Newman and htmlextra run from the CLI', function () {
 
     it('should correctly generate html report for a urlencoded POST request', function (done) {
         // eslint-disable-next-line max-len
-        exec(`${newman} run test/requests/simple-post-request-with-urlencoded.json -r htmlextra --reporter-htmlextra-export ${outFile}`,
+        exec(`${newman} run test/requests/simple-post-request-with-urlencoded.json -r htmlextra-onexit --reporter-htmlextra-export ${outFile}`,
             function (code) {
                 expect(code, 'should have exit code of 0').to.equal(0);
                 fs.stat(outFile, done);
@@ -118,7 +118,7 @@ describe('Newman and htmlextra run from the CLI', function () {
 
     it('should correctly generate the html report with a new title for a successful run', function (done) {
         // eslint-disable-next-line max-len
-        exec(`${newman} run test/requests/simple-get-request.json -r htmlextra --reporter-htmlextra-export ${outFile} --reporter-htmlextra-title "My new report title"`,
+        exec(`${newman} run test/requests/simple-get-request.json -r htmlextra-onexit --reporter-htmlextra-export ${outFile} --reporter-htmlextra-title "My new report title"`,
             function (code) {
                 expect(code, 'should have exit code of 0').to.equal(0);
                 fs.stat(outFile, done);
@@ -127,7 +127,7 @@ describe('Newman and htmlextra run from the CLI', function () {
 
     it('should correctly generate the html report with test pagination for a successful run', function (done) {
         // eslint-disable-next-line max-len
-        exec(`${newman} run test/requests/simple-get-request.json -r htmlextra --reporter-htmlextra-export ${outFile} --reporter-htmlextra-testPaging`,
+        exec(`${newman} run test/requests/simple-get-request.json -r htmlextra-onexit --reporter-htmlextra-export ${outFile} --reporter-htmlextra-testPaging`,
             function (code) {
                 expect(code, 'should have exit code of 0').to.equal(0);
                 fs.stat(outFile, done);
@@ -136,7 +136,7 @@ describe('Newman and htmlextra run from the CLI', function () {
 
     it('should correctly generate the html report for a failed run', function (done) {
         // eslint-disable-next-line max-len
-        exec(`${newman} run test/requests/simple-failing-request.json -r htmlextra --reporter-htmlextra-export ${outFile}`,
+        exec(`${newman} run test/requests/simple-failing-request.json -r htmlextra-onexit --reporter-htmlextra-export ${outFile}`,
             function (code) {
                 expect(code, 'should have exit code of 1').to.equal(1);
                 fs.stat(outFile, done);
@@ -145,7 +145,7 @@ describe('Newman and htmlextra run from the CLI', function () {
 
     it('should correctly generate the html report showing only the requests with failed tests', function (done) {
         // eslint-disable-next-line max-len
-        exec(`${newman} run test/requests/simple-failing-request.json -r htmlextra --reporter-htmlextra-export ${outFile} --reporter-htmlextra-showOnlyFails`,
+        exec(`${newman} run test/requests/simple-failing-request.json -r htmlextra-onexit --reporter-htmlextra-export ${outFile} --reporter-htmlextra-showOnlyFails`,
             function (code) {
                 expect(code, 'should have exit code of 1').to.equal(1);
                 fs.stat(outFile, done);
@@ -154,7 +154,7 @@ describe('Newman and htmlextra run from the CLI', function () {
 
     it('should correctly produce the html report for a collection with an environment file', function (done) {
         // eslint-disable-next-line max-len
-        exec(`${newman} run test/requests/simple-request-with-env.json -e test/requests/simple-env.json -r htmlextra --reporter-htmlextra-export ${outFile}`,
+        exec(`${newman} run test/requests/simple-request-with-env.json -e test/requests/simple-env.json -r htmlextra-onexit --reporter-htmlextra-export ${outFile}`,
             function (code) {
                 expect(code, 'should have exit code of 0').to.equal(0);
                 fs.stat(outFile, done);
@@ -163,7 +163,7 @@ describe('Newman and htmlextra run from the CLI', function () {
 
     it('should correctly produce the html report for a collection with an environment values shown', function (done) {
         // eslint-disable-next-line max-len
-        exec(`${newman} run test/requests/simple-request-with-env.json -e test/requests/simple-env.json -r htmlextra --reporter-htmlextra-export ${outFile} --reporter-htmlextra-showEnvironmentData`,
+        exec(`${newman} run test/requests/simple-request-with-env.json -e test/requests/simple-env.json -r htmlextra-onexit --reporter-htmlextra-export ${outFile} --reporter-htmlextra-showEnvironmentData`,
             function (code) {
                 expect(code, 'should have exit code of 0').to.equal(0);
                 fs.stat(outFile, done);
@@ -173,7 +173,7 @@ describe('Newman and htmlextra run from the CLI', function () {
     // eslint-disable-next-line max-len
     it('should correctly produce the html report for a collection with an environment values and hide the specified variable', function (done) {
         // eslint-disable-next-line max-len
-        exec(`${newman} run test/requests/simple-request-with-env.json -e test/requests/simple-env.json -r htmlextra --reporter-htmlextra-export ${outFile} --reporter-htmlextra-showEnvironmentData --reporter-htmlextra-skipEnvironmentVars secretVariable`,
+        exec(`${newman} run test/requests/simple-request-with-env.json -e test/requests/simple-env.json -r htmlextra-onexit --reporter-htmlextra-export ${outFile} --reporter-htmlextra-showEnvironmentData --reporter-htmlextra-skipEnvironmentVars secretVariable`,
             function (code) {
                 expect(code, 'should have exit code of 0').to.equal(0);
                 fs.stat(outFile, done);
@@ -182,7 +182,7 @@ describe('Newman and htmlextra run from the CLI', function () {
 
     it('should correctly generate the html report for a collection run for more that 1 iteration', function (done) {
         // eslint-disable-next-line max-len
-        exec(`${newman} run test/requests/simple-get-request.json -r htmlextra --reporter-htmlextra-export ${outFile} -n 3`,
+        exec(`${newman} run test/requests/simple-get-request.json -r htmlextra-onexit --reporter-htmlextra-export ${outFile} -n 3`,
             function (code) {
                 expect(code, 'should have exit code of 0').to.equal(0);
                 fs.stat(outFile, done);
@@ -191,14 +191,14 @@ describe('Newman and htmlextra run from the CLI', function () {
 
     it('should correctly generate the html report for a successful run and remove a single header', function (done) {
         // eslint-disable-next-line max-len
-        exec(`${newman} run test/requests/simple-get-request-with-headers.json -r htmlextra --reporter-htmlextra-export ${outFile} --reporter-htmlextra-skipHeaders testHeader`,
+        exec(`${newman} run test/requests/simple-get-request-with-headers.json -r htmlextra-onexit --reporter-htmlextra-export ${outFile} --reporter-htmlextra-skipHeaders testHeader`,
             function (code) {
                 expect(code, 'should have exit code of 0').to.equal(0);
                 fs.stat(outFile, done);
             });
     });
     it('should correctly generate the html report for a successful run and remove multiple headers', function (done) {
-        exec(`${newman} run test/requests/simple-get-request-with-headers.json -r htmlextra --reporter-htmlextra-export ${outFile} --reporter-htmlextra-skipHeaders Testheader,host,ACCEPT`,
+        exec(`${newman} run test/requests/simple-get-request-with-headers.json -r htmlextra-onexit --reporter-htmlextra-export ${outFile} --reporter-htmlextra-skipHeaders Testheader,host,ACCEPT`,
             function (code) {
                 expect(code, 'should have exit code of 0').to.equal(0);
                 fs.stat(outFile, done);
@@ -206,7 +206,7 @@ describe('Newman and htmlextra run from the CLI', function () {
     });
     it('should correctly generate the html report when a header is not specified', function (done) {
         // eslint-disable-next-line max-len
-        exec(`${newman} run test/requests/simple-get-request-with-headers.json -r htmlextra --reporter-htmlextra-export ${outFile} --reporter-htmlextra-skipHeaders`,
+        exec(`${newman} run test/requests/simple-get-request-with-headers.json -r htmlextra-onexit --reporter-htmlextra-export ${outFile} --reporter-htmlextra-skipHeaders`,
             function (code) {
                 expect(code, 'should have exit code of 0').to.equal(0);
                 fs.stat(outFile, done);
@@ -214,7 +214,7 @@ describe('Newman and htmlextra run from the CLI', function () {
     });
     it('should correctly generate the html report for a successful run and remove all headers', function (done) {
         // eslint-disable-next-line max-len
-        exec(`${newman} run test/requests/simple-get-request-with-headers.json -r htmlextra --reporter-htmlextra-export ${outFile} --reporter-htmlextra-omitHeaders`,
+        exec(`${newman} run test/requests/simple-get-request-with-headers.json -r htmlextra-onexit --reporter-htmlextra-export ${outFile} --reporter-htmlextra-omitHeaders`,
             function (code) {
                 expect(code, 'should have exit code of 0').to.equal(0);
                 fs.stat(outFile, done);
@@ -222,7 +222,7 @@ describe('Newman and htmlextra run from the CLI', function () {
     });
     it('should correctly generate the html report when a request name is not specified', function (done) {
         // eslint-disable-next-line max-len
-        exec(`${newman} run test/requests/simple-get-request.json -r htmlextra --reporter-htmlextra-export ${outFile} --reporter-htmlextra-hideResponseBody`,
+        exec(`${newman} run test/requests/simple-get-request.json -r htmlextra-onexit --reporter-htmlextra-export ${outFile} --reporter-htmlextra-hideResponseBody`,
             function (code) {
                 expect(code, 'should have exit code of 0').to.equal(0);
                 fs.stat(outFile, done);

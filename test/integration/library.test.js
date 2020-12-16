@@ -8,9 +8,6 @@ var fs = require('fs'),
         '\\\\)*[^\\\\/:*?"|<>. ](([^\\\\/:*?"|<>. ])' +
         '|([^\\\\/:*?"|<>]*[^\\\\/:*?"|<>. ]))?$');
 
-var reporter = require('../../lib/index');
-var newman = require('newman');
-
 describe('Newman and htmlextra run from a script', function () {
     var outFile = 'out/newman-report.htmlextra.html',
         invalidCollectionNameFolder = 'test/requests/collection_with_name_containing_invalid_characters',
@@ -74,7 +71,7 @@ describe('Newman and htmlextra run from a script', function () {
         'name (' + collectionFile.info.name + ')', function (done) {
             newman.run({
                 collection: invalidCollectionNameFolder + '/' + file,
-                reporters: [reporter],
+                reporters: ['htmlextra-onexit'],
                 reporter: { htmlextra: { } }
             // eslint-disable-next-line consistent-return
             }, function (err, summary) {
@@ -96,7 +93,7 @@ describe('Newman and htmlextra run from a script', function () {
     it('should correctly generate the html report for a successful run', function (done) {
         newman.run({
             collection: 'test/requests/simple-get-request.json',
-            reporters: [reporter],
+            reporters: ['htmlextra-onexit'],
             reporter: { htmlextra: { export: outFile } }
         // eslint-disable-next-line consistent-return
         }, function (err, summary) {
@@ -110,7 +107,7 @@ describe('Newman and htmlextra run from a script', function () {
     it('should correctly generate html report for a formdata POST request', function (done) {
         newman.run({
             collection: 'test/requests/simple-post-request-with-formdata.json',
-            reporters: [reporter],
+            reporters: ['htmlextra-onexit'],
             reporter: { htmlextra: { export: outFile } }
         // eslint-disable-next-line consistent-return
         }, function (err, summary) {
@@ -133,7 +130,7 @@ describe('Newman and htmlextra run from a script', function () {
     it('should correctly generate html report for a urlencoded POST request', function (done) {
         newman.run({
             collection: 'test/requests/simple-post-request-with-urlencoded.json',
-            reporters: [reporter],
+            reporters: ['htmlextra-onexit'],
             reporter: { htmlextra: { export: outFile } }
         // eslint-disable-next-line consistent-return
         }, function (err, summary) {
@@ -150,7 +147,7 @@ describe('Newman and htmlextra run from a script', function () {
     it('should correctly generate the html report with a new title for a successful run', function (done) {
         newman.run({
             collection: 'test/requests/simple-get-request.json',
-            reporters: [reporter],
+            reporters: ['htmlextra-onexit'],
             reporter: { htmlextra: { export: outFile, title: 'My new report title' } }
         // eslint-disable-next-line consistent-return
         }, function (err, summary) {
@@ -164,7 +161,7 @@ describe('Newman and htmlextra run from a script', function () {
     it('should correctly generate the html report with test pagination for a successful run', function (done) {
         newman.run({
             collection: 'test/requests/simple-get-request.json',
-            reporters: [reporter],
+            reporters: ['htmlextra-onexit'],
             reporter: { htmlextra: { export: outFile, testPaging: true } }
         // eslint-disable-next-line consistent-return
         }, function (err, summary) {
@@ -179,7 +176,7 @@ describe('Newman and htmlextra run from a script', function () {
         newman.run({
             collection: 'test/requests/simple-get-request.json',
             iterationCount: 2,
-            reporters: [reporter],
+            reporters: ['htmlextra-onexit'],
             reporter: { htmlextra: { export: outFile } }
         // eslint-disable-next-line consistent-return
         }, function (err, summary) {
@@ -194,7 +191,7 @@ describe('Newman and htmlextra run from a script', function () {
         newman.run({
             collection: 'test/requests/simple-request-with-env.json',
             environment: 'test/requests/simple-env.json',
-            reporters: [reporter],
+            reporters: ['htmlextra-onexit'],
             reporter: { htmlextra: { export: outFile } }
         // eslint-disable-next-line consistent-return
         }, function (err, summary) {
@@ -212,7 +209,7 @@ describe('Newman and htmlextra run from a script', function () {
         newman.run({
             collection: 'test/requests/simple-request-with-env.json',
             environment: 'test/requests/simple-env.json',
-            reporters: [reporter],
+            reporters: ['htmlextra-onexit'],
             reporter: { htmlextra: { export: outFile, showEnvironmentData: true } }
         // eslint-disable-next-line consistent-return
         }, function (err, summary) {
@@ -231,7 +228,7 @@ describe('Newman and htmlextra run from a script', function () {
         newman.run({
             collection: 'test/requests/simple-request-with-env.json',
             environment: 'test/requests/simple-env.json',
-            reporters: [reporter],
+            reporters: ['htmlextra-onexit'],
             // eslint-disable-next-line max-len
             reporter: { htmlextra: { export: outFile, showEnvironmentData: true, skipEnvironmentVars: ['secretVariable'] } }
         // eslint-disable-next-line consistent-return
@@ -249,7 +246,7 @@ describe('Newman and htmlextra run from a script', function () {
     it('should correctly generate the html report for a failed run', function (done) {
         newman.run({
             collection: 'test/requests/simple-failing-request.json',
-            reporters: [reporter],
+            reporters: ['htmlextra-onexit'],
             reporter: { htmlextra: { export: outFile } }
         // eslint-disable-next-line consistent-return
         }, function (err, summary) {
@@ -264,7 +261,7 @@ describe('Newman and htmlextra run from a script', function () {
     it('should correctly generate the html report with only the requests that have test failures', function (done) {
         newman.run({
             collection: 'test/requests/simple-failing-request.json',
-            reporters: [reporter],
+            reporters: ['htmlextra-onexit'],
             reporter: { htmlextra: { export: outFile, showOnlyFails: true } }
         // eslint-disable-next-line consistent-return
         }, function (err, summary) {
@@ -279,7 +276,7 @@ describe('Newman and htmlextra run from a script', function () {
     it('should correctly generate the dark html report with only the requests that have test fails', function (done) {
         newman.run({
             collection: 'test/requests/simple-failing-request.json',
-            reporters: [reporter],
+            reporters: ['htmlextra-onexit'],
             reporter: { htmlextra: { export: outFile, showOnlyFails: true } }
         // eslint-disable-next-line consistent-return
         }, function (err, summary) {
@@ -294,7 +291,7 @@ describe('Newman and htmlextra run from a script', function () {
     it('should correctly generate the html report for a run with skipped Tests', function (done) {
         newman.run({
             collection: 'test/requests/simple-skipped-request.json',
-            reporters: [reporter],
+            reporters: ['htmlextra-onexit'],
             reporter: { htmlextra: { export: outFile } }
         // eslint-disable-next-line consistent-return
         }, function (err, summary) {
@@ -308,7 +305,7 @@ describe('Newman and htmlextra run from a script', function () {
     it('should correctly generate the html report for a run with console logs', function (done) {
         newman.run({
             collection: 'test/requests/simple-get-request-with-log-messages.json',
-            reporters: [reporter],
+            reporters: ['htmlextra-onexit'],
             reporter: { htmlextra: { export: outFile, logs: true } }
         // eslint-disable-next-line consistent-return
         }, function (err, summary) {
@@ -324,7 +321,7 @@ describe('Newman and htmlextra run from a script', function () {
     it('should correctly produce the html report for a run with all test types', function (done) {
         newman.run({
             collection: 'test/requests/simple-request-with-all-test-types.json',
-            reporters: [reporter],
+            reporters: ['htmlextra-onexit'],
             reporter: { htmlextra: { export: outFile } }
         // eslint-disable-next-line consistent-return
         }, function (err, summary) {
@@ -350,7 +347,7 @@ describe('Newman and htmlextra run from a script', function () {
     it('should correctly generate the html report for a successful run and remove a single header', function (done) {
         newman.run({
             collection: 'test/requests/simple-get-request-with-headers.json',
-            reporters: [reporter],
+            reporters: ['htmlextra-onexit'],
             reporter: { htmlextra: { skipHeaders: 'testHeader', export: outFile } }
         // eslint-disable-next-line consistent-return
         }, function (err, summary) {
@@ -363,7 +360,7 @@ describe('Newman and htmlextra run from a script', function () {
     it('should correctly generate the html report for a successful run and remove multiple headers', function (done) {
         newman.run({
             collection: 'test/requests/simple-get-request-with-headers.json',
-            reporters: [reporter],
+            reporters: ['htmlextra-onexit'],
             reporter: { htmlextra: { skipHeaders: ['testHeader', 'host', 'User-Agent'], export: outFile } }
         // eslint-disable-next-line consistent-return
         }, function (err, summary) {
@@ -376,7 +373,7 @@ describe('Newman and htmlextra run from a script', function () {
     it('should correctly generate the html report for a successful run and remove all headers', function (done) {
         newman.run({
             collection: 'test/requests/simple-get-request-with-headers.json',
-            reporters: [reporter],
+            reporters: ['htmlextra-onexit'],
             reporter: { htmlextra: { omitHeaders: true, export: outFile } }
         // eslint-disable-next-line consistent-return
         }, function (err, summary) {

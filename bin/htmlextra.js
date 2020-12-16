@@ -29,7 +29,7 @@ program
 
 program
     .addHelpCommand(false)
-    .usage('newman run [collection file | link] -r htmlextra [option]')
+    .usage('newman run [collection file | link] -r htmlextra-onexit [option]')
     .version(version, '-v, --version', 'HTMLEXTRA version');
 
 if (process.argv.length < 3) {

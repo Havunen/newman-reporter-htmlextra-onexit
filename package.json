@@ -16,9 +16,9 @@
   "deprecated": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/DannyDainton/newman-reporter-htmlextra.git"
+    "url": "https://github.com/Havunen/newman-reporter-htmlextra-onexit.git"
   },
-  "bugs": "https://github.com/DannyDainton/newman-reporter-htmlextra-onexit/issues",
+  "bugs": "https://github.com/Havunen/newman-reporter-htmlextra-onexit/issues",
   "keywords": [
     "newman",
     "reporter",
