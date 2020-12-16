@@ -29,18 +29,18 @@ describe('project repository', function () {
 
         describe('package.json JSON data', function () {
             it('should have valid name, description and author', function () {
-                expect(json).to.have.property('name', 'newman-reporter-htmlextra');
+                expect(json).to.have.property('name', 'newman-reporter-htmlextra-onexit');
                 // eslint-disable-next-line max-len
                 expect(json).to.have.property('description', 'A newman reporter with added handlebars helpers and separated request iterations');
                 expect(json).to.have.property('author', 'Danny Dainton');
                 expect(json).to.have.property('license', 'Apache-2.0');
                 // eslint-disable-next-line max-len
-                expect(json).to.have.property('bugs', 'https://github.com/DannyDainton/newman-reporter-htmlextra/issues');
+                expect(json).to.have.property('bugs', 'https://github.com/DannyDainton/newman-reporter-htmlextra-onexit/issues');
 
                 expect(json).to.have.property('repository');
                 expect(json.repository).to.eql({
                     type: 'git',
-                    url: 'https://github.com/DannyDainton/newman-reporter-htmlextra.git'
+                    url: 'https://github.com/DannyDainton/newman-reporter-htmlextra-onexit.git'
                 });
 
                 expect(json).to.have.property('keywords');

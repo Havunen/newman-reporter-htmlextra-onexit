@@ -43,7 +43,7 @@ module.exports = function (exit) {
         fs.existsSync(tempDir) && shell.rm('-rf', tempDir);
         fs.mkdirSync(tempDir);
 
-        console.info('\n  Installing newman & newman-reporter-htmlextra into the temp directory'.gray);
+        console.info('\n  Installing newman & newman-reporter-htmlextra-onexit into the temp directory'.gray);
         newmanPkg = shell.exec('npm pack ../node_modules/newman', { cwd: tempDir, silent: true }).stdout.trim();
         reporterPkg = shell.exec('npm pack ../', { cwd: tempDir, silent: true }).stdout.trim();
         shell.exec(`npm i --prefix . ${newmanPkg}`, { cwd: tempDir, silent: true });

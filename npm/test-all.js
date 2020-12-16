@@ -11,7 +11,7 @@ require('async').series([
     require('./test-system'),
     require('./test-integration')
 ], function (code) {
-    console.info(`\nnewman-reporter-htmlextra: duration ${prettyms(Date.now() - startedAt)}\n
-        newman-reporter-htmlextra: ${code ? 'not ok' : 'ok'}!`[code ? 'red' : 'green']);
+    console.info(`\nnewman-reporter-htmlextra-onexit: duration ${prettyms(Date.now() - startedAt)}\n
+        newman-reporter-htmlextra-onexit: ${code ? 'not ok' : 'ok'}!`[code ? 'red' : 'green']);
     exit(code && (typeof code === 'number' ? code : 1) || 0);
 });

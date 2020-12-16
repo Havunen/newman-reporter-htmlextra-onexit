@@ -27,7 +27,7 @@ Any files that would allow me to reproduce the issue locally...
 
 **Version and Platform Information:**
  - `newman` version 
- - `newman-reporter-htmlextra` version
+ - `newman-reporter-htmlextra-onexit` version
  - OS 
  - The CLI command you've used to start Newman
 
