@@ -8,8 +8,6 @@ program
     .option('--reporter-htmlextra-export', 'Specify a export location for the report')
     .option('--reporter-htmlextra-template', 'Specify a custom template path for the reporter to use')
     .option('--reporter-htmlextra-logs', 'Displays the console log statements on the final report.')
-    .option('--reporter-htmlextra-showOnlyFails', 'Display only the requests with failed tests.')
-    .option('--reporter-htmlextra-noSyntaxHighlighting', 'Disable the code syntax highlighting')
     .option('--reporter-htmlextra-testPaging', 'Adds pagination to the tests in the request view')
     .option('--reporter-htmlextra-browserTitle', 'Specify the name of the title in the browser tab')
     .option('--reporter-htmlextra-title', 'Specify the name of the main report title on the Summary tab')
