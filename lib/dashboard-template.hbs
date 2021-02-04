@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>{{browserTitle}}</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/default.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/v/bs4/dt-1.10.22/datatables.min.css">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/v/bs4/dt-1.10.23/datatables.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
 .theme-dark {
     --background-color: #222;
@@ -187,6 +187,11 @@ body.theme-dark .table .thead-light th {
     color: #ccd2d8!important;
 }
 
+body.theme-dark .table-hover tbody tr:hover,
+body.theme-dark .table {
+    color: var(--text-color);
+}
+
 .itPassed {
   background: var(--success);
   color: white;
@@ -328,15 +333,15 @@ body.theme-light .card-body .bg-danger {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #f1f1f1;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888; 
+  background: #888;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
 }
 
 /* The switch - the box around the slider */
@@ -413,19 +418,49 @@ input:checked + .slider:before {
 
 table.dataTable td, table.dataTable tr {
     vertical-align: middle;
-} 
+}
 
 body.theme-dark code {
     color: #ccd2d8!important;
-} 
+}
 
 body.theme-light code {
     color: #000000!important;
-} 
+}
 
 </style>
 </head>
-<body class="">
+<body class="theme-dark">
+<script>
+    function setTheme(themeName) {
+        localStorage.setItem('theme', themeName);
+        document.body.className = themeName;
+    }
+
+    function toggleTheme() {
+        if (localStorage.getItem('theme') === 'theme-light') {
+            setTheme('theme-dark');
+        } else {
+            setTheme('theme-light');
+        }
+    }
+
+    (function () {
+        var sliderChecked = true;
+
+        if (localStorage.getItem('theme') === 'theme-light') {
+            setTheme('theme-light');
+            sliderChecked = false;
+        } else {
+            setTheme('theme-dark');
+            sliderChecked = true;
+        }
+
+        $(document).ready( function () {
+            document.getElementById('slider').checked = sliderChecked
+        });
+    })();
+</script>
   <div class="container">
         <div class="container">
             <label>Light</label>
@@ -517,7 +552,7 @@ body.theme-light code {
                 <span><i class="fas fa-file-code"></i></span><strong> Collection:</strong> {{collection.name}}<br>
                 {{/with}}
                 {{#if folders}}<span><i class="fas fa-folder"></i></span><strong> Specified Folders:</strong> {{folders}}<br>{{/if}}
-                {{#with summary}}  
+                {{#with summary}}
                 {{#if environment.name}}<span><i class="fas fa-file-code"></i></span><strong> Environment:</strong> {{environment.name}}<br>{{/if}}
                 </div>
             </div>
@@ -537,7 +572,7 @@ body.theme-light code {
                     </h5>
                     <div id="global-values" class="collapse" aria-labelledby="global-heading">
                     <div class="card-body">
-                        
+
                         <div class="table-responsive dyn-height">
                             <table class="table table-bordered">
                             <thead class="thead-light text-center"><tr><th>Variable Name</th><th>Variable Value</th></tr></thead>
@@ -575,7 +610,7 @@ body.theme-light code {
                     </h5>
                     <div id="environment-values" class="collapse" aria-labelledby="environment-heading">
                     <div class="card-body">
-                        
+
                         <div class="table-responsive dyn-height">
                             <table class="table table-bordered">
                             <thead class="thead-light text-center"><tr><th>Variable Name</th><th>Variable Value</th></tr></thead>
@@ -680,7 +715,7 @@ body.theme-light code {
         </div>
             <div class="tab-pane fade" id="pills-failed" role="tabcard" aria-labelledby="pills-failed-tab">
                 <button id="topOfFailuresScreen" class="btn btn-outline-success btn-sm backToTop" onclick="topFunction()">Go To Top</button>
-                
+
                 {{#if summary.failures.length}}
                     <div class="btn-group float-right" role="group" aria-label="Button Group">
                         <button id="openAllFailed" class="btn btn-outline-success btn-sm float-right" style="text-align: center; width: 185px;">Expand All Failed Tests</button>
@@ -732,7 +767,7 @@ body.theme-light code {
                     </div>
                     <br>
                     <br>
-                
+
                     {{#with summary}}
                     <div class="alert alert-warning text-uppercase text-center">
                         <h4>Showing {{skippedTests.length}} Skipped {{#gt skippedTests.length 1}}Tests{{else}}Test{{/gt}}</h4>
@@ -765,7 +800,7 @@ body.theme-light code {
             <div class="tab-pane fade" id="pills-requests" role="tabcard" aria-labelledby="pills-requests-tab">
 
             <button id="topOfRequestsScreen" class="btn btn-outline-success btn-sm backToTop" onclick="topFunction()">Go To Top</button>
-            
+
             <div class="btn-group float-right" role="group" aria-label="Button Group">
                 {{#if summary.failures.length}}
                 <button id="showOnlyFailures" class="btn btn-outline-success btn-sm float-right" style="text-align: center; width:160px;">Show Failed Iterations</button>
@@ -1130,7 +1165,7 @@ body.theme-light code {
                         <h5 class="card-title text-uppercase text-white text-center bg-info">Test Information</h5>
                             {{#if assertions.length}}
                             <div class="table-responsive text-nowrap">
-                                <table id="myTable-{{item.id}}" class="table table-hover">
+                                <table class="datatable table table-hover">
                                 <thead><tr class="text-center"><th>Name</th><th>Passed</th><th>Failed</th><th>Skipped</th></tr></thead>
                                     <tbody>
                                         {{#each assertions}}
@@ -1193,23 +1228,18 @@ body.theme-light code {
 {{/each}}
 {{/inline}}
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.datatables.net/v/bs4/dt-1.10.22/datatables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/v/bs4/dt-1.10.23/datatables.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.4/remarkable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/2.0.1/remarkable.min.js"></script>
 {{#eq noSyntaxHighlighting false}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 {{/eq}}
-
 <!-- Data Table Configuration -->
-
 <script>
-{{#each aggregations}}
-{{#each executions}}
 $(document).ready( function () {
-    $('#myTable-{{item.id}}').DataTable({
+    $('.datatable').DataTable({
         "retrieve": true,
         "paging": {{paging}},
         "info": false,
@@ -1218,23 +1248,13 @@ $(document).ready( function () {
         }
     });
 });
-{{/each}}
-{{/each}}
-</script>
 
-<!-- Tooltip Configuration -->
-
-<script>
 $(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip({
         trigger : 'hover'
     })
 })
-</script>
 
-<!-- Show/Hide The Folders -->
-
-<script>
 $('#openAll').on('click', function(e) {
 let clickCount = $(this).data("clickCount") || 1
 switch (clickCount){
@@ -1256,11 +1276,7 @@ switch (clickCount){
 clickCount = clickCount > 1 ? 1 : ++clickCount;
 $(this).data("clickCount", clickCount)
 })
-</script>
 
-<!-- Show/Hide The Requests -->
-
-<script>
 $('#openAllRequests').on('click', function(e) {
 let clickCount = $(this).data("clickCount") || 1
 switch (clickCount){
@@ -1290,11 +1306,7 @@ switch (clickCount){
 clickCount = clickCount > 1 ? 1 : ++clickCount;
 $(this).data("clickCount", clickCount)
 })
-</script>
 
-<!-- Show/Hide The Skipped Tests -->
-
-<script>
 $('#openAllSkipped').on('click', function(e) {
 let clickCount = $(this).data("clickCount") || 1
 switch (clickCount){
@@ -1324,11 +1336,7 @@ switch (clickCount){
 clickCount = clickCount > 1 ? 1 : ++clickCount;
 $(this).data("clickCount", clickCount)
 })
-</script>
 
-<!-- Show/Hide The Failures -->
-
-<script>
 $('#openAllFailed').on('click', function(e) {
 let clickCount = $(this).data("clickCount") || 1
 switch (clickCount){
@@ -1358,11 +1366,7 @@ switch (clickCount){
 clickCount = clickCount > 1 ? 1 : ++clickCount;
 $(this).data("clickCount", clickCount)
 })
-</script>
 
-<!-- Pretty Print the Response Body-->
-
-<script>
 function isJSON(data)
 {
     var ret = true;
@@ -1412,16 +1416,11 @@ $(".prettyPrint").each(function () {
                 data = JSON.stringify(obj, null, 2);
         }
         else if(isXML(data)) {
-            data = formatXML(data);            
+            data = formatXML(data);
         }
         $(this).text(data);
 });
-</script>
 
-
-<!-- Copy Response Body To Clipboard -->
-
-<script>
     var clipboard = new ClipboardJS('.copyButton');
 
     clipboard.on('success', function(e) {
@@ -1443,11 +1442,6 @@ $(".prettyPrint").each(function () {
         }, 2000);
     });
 
-</script>
-
-<!-- Render the Description Markdown and link in the test failures -->
-
-<script>
     const remarkable = new Remarkable();
 
     const descriptions = document.querySelectorAll(".renderMarkdown");
@@ -1460,11 +1454,7 @@ $(".prettyPrint").each(function () {
     function trim(string) {
         return string ? string.replace(/^ +| +$/gm, "") : string;
     }
-</script>
 
-<!-- Show/Hide The Toggles When Scrolling The Page -->
-
-<script>
 window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
@@ -1474,11 +1464,11 @@ function scrollFunction() {
     document.getElementById("topOfSkippedScreen").style.display = "block";
     document.getElementById("openAll").style.display = "none";
     document.getElementById("openAllRequests").style.display = "none";
-    
+
     {{#if summary.skippedTests.length}}
     document.getElementById("openAllSkipped").style.display = "none";
     {{/if}}
-    
+
     {{#if summary.failures.length}}
     document.getElementById("showOnlyFailures").style.display = "none";
     document.getElementById("openAllFailed").style.display = "none";
@@ -1489,7 +1479,7 @@ function scrollFunction() {
     document.getElementById("topOfSkippedScreen").style.display = "none";
     document.getElementById("openAll").style.display = "block";
     document.getElementById("openAllRequests").style.display = "block";
-    
+
     {{#if summary.skippedTests.length}}
     document.getElementById("openAllSkipped").style.display = "block";
     {{/if}}
@@ -1504,12 +1494,6 @@ function topFunction() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
 }
-</script>
-
-<!-- Creates The Iteration Tabs -->
-
-<script type="text/javascript">
-    "use strict";
 
 window.onload = function () {
 
@@ -1544,7 +1528,7 @@ window.onload = function () {
       allMenus.forEach(function(elem){
         elem.style.borderBottom = 'none';
       })
-    
+
       this.style.borderBottom = 'solid 3px #032a33';
 
       let items = document.querySelectorAll("." + this.id + ':not(.row)');
@@ -1571,11 +1555,7 @@ window.onload = function () {
   {{/each}}
   {{/each}}
 }
-</script>
 
-<!-- Create the Selected Iteration Label -->
-
-<script>
 $(document).ready(function(){
     $(function() {
         $("#iterationList li").click(function() {
@@ -1583,11 +1563,7 @@ $(document).ready(function(){
         });
     });
 });
-</script>
 
-<!-- Filter Action for the Iterations -->
-
-<script>
 $(document).ready(function(){
   $("#filterInput").on("input paste", function() {
     var value = $(this).val();
@@ -1597,20 +1573,16 @@ $(document).ready(function(){
     });
   });
 });
-</script>
 
-<!-- Showing the Failed Interations -->
-
-<script>
-$(document).ready(function(){  
+$(document).ready(function(){
   if($("#iterationList li.itFailed").length){
 	$("#showOnlyFailures").data("clickCount", 0);
     $("#showOnlyFailures").on("click", function () {
         let clickCount = $(this).data("clickCount")
-		$("#filterInput").val()!="" && clickCount==0 ? 
+		$("#filterInput").val()!="" && clickCount==0 ?
 		$("#filterInput").val('').trigger('input'): null;
-								
-        let selectedIteration = $('#iterationList li').filter(function () { 
+
+        let selectedIteration = $('#iterationList li').filter(function () {
             return $(this).css('border-bottom').indexOf("solid") > -1 && $(this).hasClass('itFailed');
         });
         selectedIteration.length || clickCount ? null : $("#iterationList li.itFailed")[0].click()
@@ -1622,35 +1594,8 @@ $(document).ready(function(){
          });
         clickCount = clickCount ? 0 : ++clickCount;
         clickCount ? $("#showOnlyFailures").html("Show All Iterations") : $("#showOnlyFailures").html("Show Failed Iterations");
-        $(this).data("clickCount", clickCount)     
+        $(this).data("clickCount", clickCount)
     });
   }
 });
-</script>
-
-<!-- Set The Theme Of The Report -->
-
-<script>
-        function setTheme(themeName) {
-            localStorage.setItem('theme', themeName);
-            document.body.className = themeName;
-        }
-
-        function toggleTheme() {
-            if (localStorage.getItem('theme') === 'theme-light') {
-                setTheme('theme-dark');
-            } else {
-                setTheme('theme-light');
-            }
-        }
-
-        (function () {
-            if (localStorage.getItem('theme') === 'theme-light') {
-                setTheme('theme-light');
-                document.getElementById('slider').checked = false;
-            } else {
-                setTheme('theme-dark');
-                document.getElementById('slider').checked = true;
-            }
-        })();
 </script>
