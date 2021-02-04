@@ -331,15 +331,15 @@ body.theme-light .card-body .bg-danger {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #f1f1f1;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888; 
+  background: #888;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
 }
 
 /* The switch - the box around the slider */
@@ -416,15 +416,15 @@ input:checked + .slider:before {
 
 table.dataTable td, table.dataTable tr {
     vertical-align: middle;
-} 
+}
 
 body.theme-dark code {
     color: #ccd2d8!important;
-} 
+}
 
 body.theme-light code {
     color: #000000!important;
-} 
+}
 
 </style>
 </head>
@@ -457,7 +457,7 @@ body.theme-light code {
             </ul>
         {{/with}}
         <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade show active" id="pills-summary" role="tabcard" aria-labelledby="pills-summary-tab"> 
+            <div class="tab-pane fade show active" id="pills-summary" role="tabcard" aria-labelledby="pills-summary-tab">
 <div class="row">
   <div class="col-md-9 col-lg-12 main">
    <h1 class="display-{{titleSize}} text-center">{{title}}</h1>
@@ -520,7 +520,7 @@ body.theme-light code {
                 <span><i class="fas fa-file-code"></i></span><strong> Collection:</strong> {{collection.name}}<br>
                 {{/with}}
                 {{#if folders}}<span><i class="fas fa-folder"></i></span><strong> Specified Folders:</strong> {{folders}}<br>{{/if}}
-                {{#with summary}}  
+                {{#with summary}}
                 {{#if environment.name}}<span><i class="fas fa-file-code"></i></span><strong> Environment:</strong> {{environment.name}}<br>{{/if}}
                 </div>
             </div>
@@ -540,7 +540,7 @@ body.theme-light code {
                     </h5>
                     <div id="global-values" class="collapse" aria-labelledby="global-heading">
                     <div class="card-body">
-                        
+
                         <div class="table-responsive dyn-height">
                             <table class="table table-bordered">
                             <thead class="thead-light text-center"><tr><th>Variable Name</th><th>Variable Value</th></tr></thead>
@@ -578,7 +578,7 @@ body.theme-light code {
                     </h5>
                     <div id="environment-values" class="collapse" aria-labelledby="environment-heading">
                     <div class="card-body">
-                        
+
                         <div class="table-responsive dyn-height">
                             <table class="table table-bordered">
                             <thead class="thead-light text-center"><tr><th>Variable Name</th><th>Variable Value</th></tr></thead>
@@ -606,7 +606,7 @@ body.theme-light code {
         <div class="row">
         <div class="col-sm-12 mb-3">
             <div class="card border-info">
-                <div class="card-body">          
+                <div class="card-body">
                 <h5 class="card-title text-uppercase text-white text-center bg-info">Collection Description</h5>
                 <div class="dyn-height">
                     <pre class="renderMarkdown">{{collection.description}}</pre>
@@ -689,7 +689,7 @@ body.theme-light code {
                     </div>
                     <br>
                     <br>
-                    
+
                     {{#with summary}}
                     <div class="alert alert-danger text-uppercase text-center">
                         <h4>Showing {{failures.length}} {{#gt failures.length 1}}Failures{{else}}Failure{{/gt}}</h4>
@@ -764,7 +764,7 @@ body.theme-light code {
                 {{/if}}
             </div>
             <div class="tab-pane fade" id="pills-requests" role="tabcard" aria-labelledby="pills-requests-tab">
-            
+
             <button id="topOfRequestsScreen" class="btn btn-outline-success btn-sm backToTop" onclick="topFunction()">Go To Top</button>
 
             <div class="btn-group float-right" role="group" aria-label="Button Group">
@@ -790,8 +790,8 @@ body.theme-light code {
         {{else}}
         {{> aggregations}}
         {{/if}}
-{{/each}} 
-        </div>      
+{{/each}}
+        </div>
     </div>
     </div>
     </div>
@@ -846,13 +846,13 @@ body.theme-light code {
                                 <div class="dyn-height">
                                     <code class="renderMarkdown">{{description.content}}</code>
                                 </div>
-                            </div>                    
+                            </div>
                         </div>
                     </div>
                     </div>
                 </div>
                 {{/if}}
-                {{/with}}  
+                {{/with}}
                 <div class="row">
                     <div class="col-sm-12 mb-3">
                         <div class="card-deck">
@@ -1168,20 +1168,20 @@ body.theme-light code {
                                 </div>
                                 </div>
                             </div>
-                            </div>          
+                            </div>
                             {{else}}
                             <h5 class="alert alert-success text-uppercase text-center">No Tests for this request</h5>
-                            {{/if}}                           
+                            {{/if}}
                         </div>
                     </div>
-                </div>           
+                </div>
             </div>
             </div>
-        </div>      
+        </div>
         </div>
     </div>
     </div>
-{{/gt}}  
+{{/gt}}
 {{/each}}
 {{/inline}}
 
@@ -1190,10 +1190,6 @@ body.theme-light code {
 <script src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.1/remarkable.min.js"></script>
-{{#eq noSyntaxHighlighting false}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
-{{/eq}}
 
 <!-- Data Table Configuration -->
 
@@ -1273,7 +1269,7 @@ $(".prettyPrint").each(function () {
                 data = JSON.stringify(obj, null, 2);
         }
         else if(isXML(data)) {
-            data = formatXML(data);            
+            data = formatXML(data);
         }
         $(this).text(data);
 });
@@ -1284,8 +1280,8 @@ $(".prettyPrint").each(function () {
 
 <script>
     var clipboard = new ClipboardJS('.copyButton');
-    
-    clipboard.on('success', function(e) {        
+
+    clipboard.on('success', function(e) {
         e.clearSelection();
         $(".copyButton").addClass("bg-success text-white")
         e.trigger.textContent = '✔ Copied!';
@@ -1310,7 +1306,7 @@ $(".prettyPrint").each(function () {
 
 <script>
     const remarkable = new Remarkable();
-    
+
     const descriptions = document.querySelectorAll(".renderMarkdown");
     descriptions.forEach(description => {
         description.innerHTML = renderHtmlFromMarkdown(description.textContent);
@@ -1440,7 +1436,7 @@ function scrollFunction() {
     {{#if summary.skippedTests.length}}
     document.getElementById("openAllSkipped").style.display = "none";
     {{/if}}
-    
+
     {{#if summary.failures.length}}
     document.getElementById("openAllFailed").style.display = "none";
     {{/if}}
@@ -1503,7 +1499,7 @@ window.onload = function () {
       allMenus.forEach(function(elem){
         elem.style.borderBottom = 'none';
       })
-      
+
       this.style.borderBottom = 'solid 3px #032a33';
 
       let items = document.querySelectorAll("." + this.id);
@@ -1518,7 +1514,7 @@ window.onload = function () {
     //shows first tab data
   document.getElementById('iteration-0').click();
   document.getElementById('iterationSelected').innerHTML = `Iteration ${document.getElementById('iteration-0').innerHTML} selected`
-  
+
   {{#each aggregations}}
   {{#each executions}}
   {{#if cumulativeTests.failed}}
