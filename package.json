@@ -9,7 +9,7 @@
     "test-integration": "node npm/test-integration.js",
     "test-lint": "node npm/test-lint.js",
     "test-system": "node npm/test-system.js",
-    "pre-publish": "node npm/test-all.js && npm pack",
+    "pre-publish": "npm pack",
     "just-pack": "npm pack",
     "local-dev": "npm link && cd node_modules/newman && npm link newman-reporter-htmlextra-onexit && cd ../.."
   },
