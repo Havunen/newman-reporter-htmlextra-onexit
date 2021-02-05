@@ -1,30 +1,15 @@
 This is fork of newman-reporter-htmlextra-onexit and tries to always create report even if process is canceled
 
-## [1.20.1] - 2021-01-27
+## [1.1.0] - 2021-02-05
 
-### Fixed
-
-- Styling issue when the `noSyntaxHighlighting` flag was used. 🏆 Credit to @stickpin 🏆
-
------------------------------------------------------------------------
-
-## [1.20.0] - 2021-01-26
-
-### Fixed
-
-- Added extra checks into the `isNotIn` helper to account for `null` key values. 🏆 Credit to @manoelagonzaga 🏆
-- Typo fixed in the Global Varaible option for the template. 🏆 Credit to @sweetnoods 🏆
-
------------------------------------------------------------------------
-## [1.19.7] - 2021-01-04
-
-### Fixed
-
-- Updated dependencies
-- Fixed issue that was preventing htmlextra from being used as a library 
-
------------------------------------------------------------------------
-
+Merged latest changes from newman-reporter-htmlextra
+Radical simplifications to template to support large reports
+Fixed flickering theme at the open
+Fixed repeating inline javascript
+Removed repeating ID's
+Moved pretty printing to generation side
+Fixed bad contrast in some fields in dark theme
+Added content length check to not print too large data into the report
 
 ### To debug tests
 
